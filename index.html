@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doce Match — Jogo Acessível para Baixa Visão</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-dark size-large">
+  <!-- Degradês 3D compartilhados para todos os doces -->
+  <svg aria-hidden="true" width="0" height="0" style="position: absolute; pointer-events: none;">
+    <defs>
+      <radialGradient id="grad-red" cx="35%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#ff8fa3" />
+        <stop offset="45%" stop-color="#ff1e42" />
+        <stop offset="100%" stop-color="#9e001c" />
+      </radialGradient>
+
+      <radialGradient id="grad-yellow" cx="35%" cy="28%" r="70%">
+        <stop offset="0%" stop-color="#fff3b0" />
+        <stop offset="45%" stop-color="#ffd000" />
+        <stop offset="100%" stop-color="#b87d00" />
+      </radialGradient>
+
+      <radialGradient id="grad-blue" cx="32%" cy="28%" r="70%">
+        <stop offset="0%" stop-color="#90e0ef" />
+        <stop offset="45%" stop-color="#0096ff" />
+        <stop offset="100%" stop-color="#003f88" />
+      </radialGradient>
+
+      <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#80ffdb" />
+        <stop offset="45%" stop-color="#00c853" />
+        <stop offset="100%" stop-color="#006428" />
+      </linearGradient>
+
+      <radialGradient id="grad-purple" cx="35%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#f3c4fb" />
+        <stop offset="45%" stop-color="#c918ff" />
+        <stop offset="100%" stop-color="#5a008a" />
+      </radialGradient>
+
+      <radialGradient id="grad-orange" cx="35%" cy="28%" r="70%">
+        <stop offset="0%" stop-color="#ffd166" />
+        <stop offset="45%" stop-color="#ff7b00" />
+        <stop offset="100%" stop-color="#a33b00" />
+      </radialGradient>
+    </defs>
+  </svg>
+
+  <header class="app-header">
+    <div class="title-group">
+      <h1>DOCE MATCH</h1>
+      <p class="subtitle">Combine 3 ou mais doces iguais</p>
+    </div>
+
+    <div class="scoreboard" role="region" aria-label="Placar do jogo">
+      <div class="score-box">
+        <span class="score-label">PONTOS</span>
+        <span id="score" class="score-value" aria-live="polite">0</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label">RECORDE</span>
+        <span id="best-score" class="score-value">0</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="controls-bar" aria-label="Controles de acessibilidade e jogo">
+    <button id="btn-theme" class="ctrl-btn" type="button" aria-pressed="false">
+      Contraste: Escuro
+    </button>
+    <button id="btn-size" class="ctrl-btn" type="button" aria-pressed="true">
+      Tamanho: Máximo (5×8)
+    </button>
+    <button id="btn-anim" class="ctrl-btn" type="button" aria-pressed="true">
+      Animação: Ligada
+    </button>
+    <button id="btn-sound" class="ctrl-btn" type="button" aria-pressed="true">
+      Som: Ligado
+    </button>
+    <button id="btn-voice" class="ctrl-btn" type="button" aria-pressed="false">
+      Voz: Desligada
+    </button>
+    <button id="btn-hint" class="ctrl-btn ctrl-highlight" type="button">
+      Dica
+    </button>
+    <button id="btn-restart" class="ctrl-btn ctrl-danger" type="button">
+      Reiniciar
+    </button>
+  </nav>
+
+  <main class="game-container">
+    <div id="status-banner" class="status-banner" role="status" aria-live="polite">
+      Toque, clique ou arraste um doce para combinar.
+    </div>
+
+    <div class="board-wrapper">
+      <div
+        id="board"
+        class="board"
+        role="grid"
+        aria-label="Tabuleiro 5 por 8 de doces"
+      ></div>
+    </div>
+
+    <section class="legend" aria-label="Legenda dos doces">
+      <h2>Guia de Doces (Forma + Cor)</h2>
+      <div id="legend-list" class="legend-list"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+/* =========================================================
+   VARIÁVEIS DE ALTO CONTRASTE E ESCALA PARA BAIXA VISÃO
+   ========================================================= */
+   :root {
+    --grid-rows: 7;
+    --grid-cols: 7;
+    --cell-size: 92px;
+    --cell-gap: 10px;
+    --font-base: 1.3rem;
+    --border-thick: 4px;
+    --radius: 18px;
+    --container-max: 920px;
+  }
+  
+  body.theme-dark {
+    --bg-main: #09090d;
+    --bg-panel: #151520;
+    --bg-cell: #1e1e2e;
+    --bg-cell-hover: #2d2d44;
+    --text-main: #ffffff;
+    --text-muted: #f4f4f5;
+    --border-color: #ffffff;
+    --focus-ring: #ffe600;
+    --selected-bg: #363000;
+    --hint-ring: #00f5d4;
+    --btn-bg: #1f1f2e;
+    --btn-text: #ffffff;
+    --accent-bg: #ffe600;
+    --accent-text: #000000;
+    --danger-bg: #ff3b5c;
+    --danger-text: #000000;
+  }
+  
+  body.theme-light {
+    --bg-main: #ffffff;
+    --bg-panel: #f1f3f8;
+    --bg-cell: #ffffff;
+    --bg-cell-hover: #e2e8f0;
+    --text-main: #000000;
+    --text-muted: #18181b;
+    --border-color: #000000;
+    --focus-ring: #0044ff;
+    --selected-bg: #dbeafe;
+    --hint-ring: #c81e1e;
+    --btn-bg: #ffffff;
+    --btn-text: #000000;
+    --accent-bg: #0044ff;
+    --accent-text: #ffffff;
+    --danger-bg: #c81e1e;
+    --danger-text: #ffffff;
+  }
+  
+  /* Modo Tamanho Máximo: menos linhas (5) e mais colunas (8) para caber na tela */
+  body.size-large {
+    --grid-rows: 5;
+    --grid-cols: 8;
+    --cell-size: 136px;
+    --cell-gap: 14px;
+    --font-base: 1.7rem;
+    --container-max: 1320px;
+  }
+  
+  /* =========================================================
+     BASE E TIPOGRAFIA DE ALTA LEGIBILIDADE
+     ========================================================= */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-size: var(--font-base);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 48px;
+  }
+  
+  /* =========================================================
+     CABEÇALHO E PLACAR
+     ========================================================= */
+  .app-header {
+    width: 100%;
+    max-width: var(--container-max);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg-panel);
+    border: var(--border-thick) solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 18px 24px;
+    margin-bottom: 16px;
+  }
+  
+  .title-group h1 {
+    font-size: 2.3rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+  
+  body.size-large .title-group h1 {
+    font-size: 2.85rem;
+  }
+  
+  .subtitle {
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  
+  .scoreboard {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .score-box {
+    background: var(--bg-main);
+    border: var(--border-thick) solid var(--border-color);
+    border-radius: 14px;
+    padding: 10px 22px;
+    text-align: center;
+    min-width: 140px;
+  }
+  
+  body.size-large .score-box {
+    min-width: 170px;
+    padding: 12px 24px;
+  }
+  
+  .score-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+  }
+  
+  body.size-large .score-label {
+    font-size: 1.15rem;
+  }
+  
+  .score-value {
+    font-size: 2.1rem;
+    font-weight: 900;
+  }
+  
+  body.size-large .score-value {
+    font-size: 2.6rem;
+  }
+  
+  /* =========================================================
+     BARRA DE CONTROLES DE ACESSIBILIDADE
+     ========================================================= */
+  .controls-bar {
+    width: 100%;
+    max-width: var(--container-max);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  
+  .ctrl-btn {
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    border: var(--border-thick) solid var(--border-color);
+    border-radius: 14px;
+    padding: 14px 20px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.12s ease;
+  }
+  
+  body.size-large .ctrl-btn {
+    padding: 16px 24px;
+    font-size: 1.35rem;
+  }
+  
+  .ctrl-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  .ctrl-btn:focus-visible {
+    outline: 6px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+  
+  .ctrl-highlight {
+    background: var(--accent-bg);
+    color: var(--accent-text);
+  }
+  
+  .ctrl-danger {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+  }
+  
+  /* =========================================================
+     ÁREA PRINCIPAL E TABULEIRO
+     ========================================================= */
+  .game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: var(--container-max);
+  }
+  
+  .status-banner {
+    width: 100%;
+    background: var(--bg-panel);
+    border: var(--border-thick) solid var(--border-color);
+    border-radius: 14px;
+    padding: 14px 20px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.3rem;
+  }
+  
+  body.size-large .status-banner {
+    padding: 16px 24px;
+    font-size: 1.55rem;
+  }
+  
+  .board-wrapper {
+    position: relative;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  
+  .board {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols), var(--cell-size));
+    grid-template-rows: repeat(var(--grid-rows), var(--cell-size));
+    gap: var(--cell-gap);
+    background: var(--bg-panel);
+    padding: 16px;
+    border: 5px solid var(--border-color);
+    border-radius: 22px;
+    touch-action: none;
+    user-select: none;
+    width: max-content;
+  }
+  
+  body.size-large .board {
+    padding: 20px;
+    border-width: 6px;
+  }
+  
+  .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background: var(--bg-cell);
+    border: 4px solid var(--border-color);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 6px;
+    position: relative;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  
+  body.size-large .cell {
+    padding: 4px;
+    border-width: 5px;
+    border-radius: 20px;
+  }
+  
+  .cell:hover {
+    background: var(--bg-cell-hover);
+  }
+  
+  .cell:focus-visible {
+    outline: 7px solid var(--focus-ring);
+    outline-offset: 2px;
+    z-index: 4;
+  }
+  
+  /* Estado selecionado */
+  .cell.selected {
+    background: var(--selected-bg);
+    border: 6px solid var(--focus-ring);
+    z-index: 3;
+  }
+  
+  body.size-large .cell.selected {
+    border-width: 8px;
+  }
+  
+  /* Estado de dica (Hint) */
+  .cell.hint {
+    border: 6px dashed var(--hint-ring);
+    z-index: 2;
+  }
+  
+  body.size-large .cell.hint {
+    border-width: 8px;
+  }
+  
+  .candy-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.6));
+    transform-origin: center center;
+  }
+  
+  /* =========================================================
+     ANIMAÇÕES GELATINOSAS DOS DOCES
+     ========================================================= */
+  body:not(.no-animations) .candy-svg {
+    animation: candyIdle 2.6s ease-in-out infinite;
+    animation-delay: var(--idle-delay, 0s);
+  }
+  
+  body:not(.no-animations) .cell.dropping .candy-svg {
+    animation: candyDrop 0.48s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  
+  body:not(.no-animations) .cell.selected .candy-svg {
+    animation: candyJiggle 0.55s ease-in-out infinite;
+  }
+  
+  body:not(.no-animations) .cell.hint .candy-svg {
+    animation: hintBounce 0.75s ease-in-out infinite;
+  }
+  
+  body:not(.no-animations) .cell.matched .candy-svg {
+    animation: candyPop 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  
+  @keyframes candyIdle {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+    }
+    25% {
+      transform: scale(1.04, 0.96) rotate(-2.5deg);
+    }
+    50% {
+      transform: scale(0.97, 1.04) rotate(0deg);
+    }
+    75% {
+      transform: scale(1.03, 0.97) rotate(2.5deg);
+    }
+  }
+  
+  @keyframes candyDrop {
+    0% {
+      transform: translateY(-130%) scale(0.85, 1.15);
+      opacity: 0.3;
+    }
+    60% {
+      transform: translateY(8%) scale(1.14, 0.86);
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(-4%) scale(0.94, 1.06);
+    }
+    100% {
+      transform: translateY(0) scale(1, 1);
+    }
+  }
+  
+  @keyframes candyJiggle {
+    0%, 100% {
+      transform: scale(1.12) rotate(0deg);
+    }
+    25% {
+      transform: scale(1.2, 1.04) rotate(-8deg);
+    }
+    50% {
+      transform: scale(1.05, 1.2) rotate(0deg);
+    }
+    75% {
+      transform: scale(1.2, 1.04) rotate(8deg);
+    }
+  }
+  
+  @keyframes hintBounce {
+    0%, 100% {
+      transform: scale(1) translateY(0);
+    }
+    50% {
+      transform: scale(1.16, 0.92) translateY(-6px);
+    }
+  }
+  
+  @keyframes candyPop {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+      filter: brightness(1);
+    }
+    45% {
+      transform: scale(1.38);
+      opacity: 1;
+      filter: brightness(1.8);
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+  
+  .floating-score {
+    position: absolute;
+    font-size: 1.65rem;
+    font-weight: 900;
+    color: #ffe600;
+    text-shadow: 0 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000;
+    pointer-events: none;
+    z-index: 10;
+    animation: floatUp 0.8s ease-out forwards;
+  }
+  
+  body.size-large .floating-score {
+    font-size: 2.3rem;
+  }
+  
+  @keyframes floatUp {
+    0% {
+      transform: translate(-50%, 0) scale(0.7);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -48px) scale(1.2);
+      opacity: 0;
+    }
+  }
+  
+  /* =========================================================
+     LEGENDA VISUAL
+     ========================================================= */
+  .legend {
+    width: 100%;
+    background: var(--bg-panel);
+    border: var(--border-thick) solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+  }
+  
+  .legend h2 {
+    font-size: 1.35rem;
+    font-weight: 900;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  
+  body.size-large .legend h2 {
+    font-size: 1.65rem;
+  }
+  
+  .legend-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+  }
+  
+  body.size-large .legend-list {
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 16px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-cell);
+    border: 3px solid var(--border-color);
+    border-radius: 14px;
+    padding: 10px 14px;
+    font-weight: 800;
+  }
+  
+  body.size-large .legend-item {
+    padding: 14px 18px;
+    border-width: 4px;
+  }
+  
+  .legend-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+  
+  body.size-large .legend-icon {
+    width: 66px;
+    height: 66px;
+  }
+  
+  @media (max-width: 720px) {
+    :root {
+      --cell-size: 48px;
+      --cell-gap: 5px;
+    }
+    body.size-large {
+      --cell-size: 64px;
+      --cell-gap: 6px;
+    }
+  }
